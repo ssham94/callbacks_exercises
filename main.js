@@ -270,65 +270,98 @@ console.log( 'The "big spenders" are:', bigSpenders );
   HINT(S):
   - Transactions don't have 'prices', but their 'items' do!
 */
-const sumFirstSale;
+let firstSaleSum = 0;
+allSales[0]['items'].forEach(function(item){
+  firstSaleSum += item['price']
+});
+
+const sumFirstSale = firstSaleSum;
+
 
 console.log( 'The sum of the first sale items is:', sumFirstSale );
 
 
-// // --------------------------------------------------
-// // QUESTION 09
-// // --------------------------------------------------
-// /*
-//   Calculate the sum of *all* 'purchase' transactions.
+// --------------------------------------------------
+// QUESTION 09
+// --------------------------------------------------
+/*
+  Calculate the sum of *all* 'purchase' transactions.
 
-//   HINT(S):
-//   - Your solution to 'QUESTION 08' is a good starting point!
-//   - Make sure to include 'price' information from *all* purchases.
-// */
+  HINT(S):
+  - Your solution to 'QUESTION 08' is a good starting point!
+  - Make sure to include 'price' information from *all* purchases.
+*/
+let totalPurchaseSum = 0;
+allPurchases.forEach(function(purchase){
+  purchase['items'].forEach(function(item){
+    totalPurchaseSum += item['price']
+  })
+})
+const sumPurchases = totalPurchaseSum;
 
-// const sumPurchases;
-
-// console.log( 'The sum of all purchases is:', sumPurchases );
-
-
-// // --------------------------------------------------
-// // QUESTION 10
-// // --------------------------------------------------
-// /*
-//   Calculate the company's net profit.
-
-//   This number will be positive if the sum of the sales is greater than the amount spent on purchases.
-
-//   Otherwise, this number will be negative.
-
-//   HINT(S):
-//   - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
-// */
-// const netProfit;
-
-// console.log( 'The net profit is:', netProfit );
+console.log( 'The sum of all purchases is:', sumPurchases );
 
 
-// // --------------------------------------------------
-// // QUESTION 11
-// // --------------------------------------------------
-// /*
-//   Calculate the most items sold as part of single transaction.
+// --------------------------------------------------
+// QUESTION 10
+// --------------------------------------------------
+/*
+  Calculate the company's net profit.
 
-//   HINTS:
-//   - The result of this calculation should be a number (not an array, object, or other data type).
-// */
-// const mostItems;
+  This number will be positive if the sum of the sales is greater than the amount spent on purchases.
 
-// console.log( 'The most items sold in a single transaction is:', mostItems );
+  Otherwise, this number will be negative.
+
+  HINT(S):
+  - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
+*/
+let netTransactions = 0;
+transactions.forEach(function(transaction){
+  transaction['items'].forEach(function(item){
+    netTransactions += item['price'];
+  })
+})
+const netProfit = netTransactions;
+
+console.log( 'The net profit is:', netProfit );
 
 
-// // --------------------------------------------------
-// // QUESTION 12
-// // --------------------------------------------------
-// /*
-//   Calculate the sum of the 'purchase' with the fewest items.
-// */
-// const sumOfSmallestPurchase;
+// --------------------------------------------------
+// QUESTION 11
+// --------------------------------------------------
+/*
+  Calculate the most items sold as part of single transaction.
 
-// console.log( 'The sum of the smallest purchase is:', sumOfSmallestPurchase );
+  HINTS:
+  - The result of this calculation should be a number (not an array, object, or other data type).
+*/
+let mostItemsTransaction = allSales.reverse()[0];
+let mostTransactionSum = 0;
+mostItemsTransaction['items'].forEach(function(item){
+  mostTransactionSum += item['price']
+})
+
+const mostItems = mostTransactionSum
+
+console.log( 'The most items sold in a single transaction is:', mostItems );
+
+
+// --------------------------------------------------
+// QUESTION 12
+// --------------------------------------------------
+/*
+  Calculate the sum of the 'purchase' with the fewest items.
+*/
+let leastItemsSale = allSales[0]['items'];
+let tempLeastSumSale = 0;
+allSales.forEach(function(sale){
+  if (sale['items'].length < leastItemsSale.length)
+    leastItemSale = sale['items']
+})
+leastItemSale.forEach(function(item){
+  tempLeastSumSale += item['price']
+});
+
+const sumOfSmallestPurchase = tempLeastSumSale;
+
+console.log( 'The sum of the smallest purchase is:', sumOfSmallestPurchase );
